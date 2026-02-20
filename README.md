@@ -1,6 +1,6 @@
 # Odds Platform Portfolio (TypeScript + Go)
 
-A portfolio-ready rebuild of an odds scraping project
+A rebuild of an odds scraping project
 
 This repository keeps the original Python scripts in `/scrapers` as legacy research artifacts, while the production-style portfolio stack is in:
 - `/apps/api` (TypeScript realtime API + pipeline)
@@ -101,7 +101,7 @@ GitHub Actions workflow:
 - `/.github/workflows/ci.yml`
 - Runs TS install/build/tests and Go tests on push/PR.
 
-## Suggested portfolio talking points
+## talking points
 - Designed and implemented a realtime odds ingestion and alert pipeline in TypeScript.
 - Built a Next.js dashboard consuming SSE updates with resilient reconnect behavior.
 - Established shared contracts across services for safer cross-layer evolution.
