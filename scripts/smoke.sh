@@ -65,7 +65,7 @@ smoke_http_checks() {
 
   local web_html
   web_html="$(curl -fsS "$WEB_URL" | head -n 20)"
-  if [[ "$web_html" == *"Realtime Odds Platform"* ]]; then
+  if [[ "$web_html" == *"Live Value Radar"* ]]; then
     echo "[ok] Web UI responded with app content"
   else
     echo "[fail] Web UI response missing expected content" >&2
