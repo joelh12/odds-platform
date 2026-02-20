@@ -1,0 +1,42 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    environment:
+      PORT: ${PORT:-4000}
+      POLL_INTERVAL_MS: ${POLL_INTERVAL_MS:-4000}
+      ALERT_EDGE_THRESHOLD: ${ALERT_EDGE_THRESHOLD:-3}
+      ODDS_SOURCE_URL: ${ODDS_SOURCE_URL:-}
+      BETMGM_ENABLED: ${BETMGM_ENABLED:-false}
+      BETMGM_MARKET: ${BETMGM_MARKET:-SE}
+      BETMGM_LANG: ${BETMGM_LANG:-sv_SE}
+      BETMGM_OFFERING: ${BETMGM_OFFERING:-betmgmse}
+      BETMGM_UPCOMING_DAYS: ${BETMGM_UPCOMING_DAYS:-2}
+      PINNACLE_ENABLED: ${PINNACLE_ENABLED:-false}
+      PINNACLE_API_KEY: ${PINNACLE_API_KEY:-}
+      PINNACLE_DEVICE_UUID: ${PINNACLE_DEVICE_UUID:-}
+      PINNACLE_LEAGUE_ID: ${PINNACLE_LEAGUE_ID:-12}
+      PINNACLE_BRAND_ID: ${PINNACLE_BRAND_ID:-0}
+    ports:
+      - "4000:4000"
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    environment:
+      NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL:-http://localhost:4000}
+    depends_on:
+      - api
+    ports:
+      - "3000:3000"
+
+  edge-go:
+    build:
+      context: ./services/edge-go
+      dockerfile: Dockerfile
+    environment:
+      EDGE_THRESHOLD: ${EDGE_THRESHOLD:-2}
+    ports:
+      - "8082:8082"

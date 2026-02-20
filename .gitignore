@@ -1,0 +1,33 @@
+# Node/TS
+node_modules/
+dist/
+.next/
+coverage/
+*.tsbuildinfo
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Python legacy
+venv/
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+
+# Go
+bin/
+
+# Tooling/editor
+.vscode/
+.idea/
+
+# Logs & temp
+*.log
+*.tmp
+
+# Python tooling
+.pytest_cache/
